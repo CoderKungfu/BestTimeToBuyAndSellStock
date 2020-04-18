@@ -18,19 +18,17 @@ const maxProfit = (prices) => {
   
   const sortedPrices = [...prices].sort((a, b) => a - b)
 
-  let maxProfitCandidate = null
-  for(let i=0; i<sortedPrices.length; i++) {
+  const profits = [0]
+  for(let i=0; i < sortedPrices.length; i++) {
     let candidateLowestPrice = sortedPrices[i]
     let profit = profitFromPrice(candidateLowestPrice, prices)
 
-    if (maxProfitCandidate && maxProfitCandidate > profit) {
-      break
+    if (profit > 0) {
+      profits.push(profit)
     }
-
-    maxProfitCandidate = profit
   }
 
-  return maxProfitCandidate
+  return profits.sort((a, b) => a - b)[profits.length - 1]
 }
 
 export default maxProfit
